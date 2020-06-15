@@ -21,18 +21,17 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Questions questions = new Questions();
     private int qIndex = 0;
     private int score = 0;
+    private Boolean firstAttempt = true;
+
     private Button option1;
     private Button option2;
     private Button option3;
     private Button option4;
-    private Boolean firstAttempt = true;
-
     private TextView questionInfo;
-
-    private AlertDialog.Builder answerDesc;
-
     private ImageView picture;
     private String answer;
+    private AlertDialog.Builder answerDesc;
+
 
 
     @Override
@@ -42,14 +41,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
 //        Declaring objects on questions page.
         questionInfo = (TextView) findViewById(R.id.questionTitle);
-        picture = (ImageView) findViewById(R.id.questionPicture);
-        option1 = (Button) findViewById(R.id.o1);
+        picture = findViewById(R.id.questionPicture);
+        option1 = findViewById(R.id.o1);
         option1.setOnClickListener(this);
-        option2 = (Button) findViewById(R.id.o2);
+        option2 = findViewById(R.id.o2);
         option2.setOnClickListener(this);
-        option3 = (Button) findViewById(R.id.o3);
+        option3 = findViewById(R.id.o3);
         option3.setOnClickListener(this);
-        option4 = (Button) findViewById(R.id.o4);
+        option4 = findViewById(R.id.o4);
         option4.setOnClickListener(this);
         answerDesc = new AlertDialog.Builder(this).setCancelable(false);
         loadQuestion();
@@ -66,6 +65,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             picture.setImageResource(questions.getImage(qIndex));
         } else {
             Intent changeActivity = new Intent(QuestionActivity.this, ResultsActivity.class);
+            changeActivity.putExtra("results", score);
             startActivity(changeActivity);
         }
 

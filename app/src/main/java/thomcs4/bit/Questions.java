@@ -2,7 +2,7 @@ package thomcs4.bit;
 
 public class Questions {
 //-------------------------------------------------------------------------------------------------
-    private String[] questions = {"1. Which is Christchurch's Nickname?", "2. What is Auckland's Nickname?", "3. What is Hamilton's Nickname?", "4. What is Invercargill's Nickname?"};
+    private String[] questions = {"1. Which is Christchurch's Nickname?", "2. What is Auckland's Nickname?", "3. What is Hamilton's Nickname?", "4. What is Invercargill's Nickname?", ""};
     private int[] images = {R.drawable.christchurch, R.drawable.auckland, R.drawable.hamilton, R.drawable.invercargill};
     private String[][] options = {{"Emerald City", "The City of Dreams", "The Garden City", "White City"},
                                  {"City of Sails", "The City of Lilies", "Motor City", "The Big Apple"},
@@ -59,6 +59,11 @@ public class Questions {
 
     public void setAnswerDesc(String[] answerDesc) {
         this.answerDesc = answerDesc;
+    }
+
+    @Override
+    public String toString() {
+        return "";
     }
 
 }
