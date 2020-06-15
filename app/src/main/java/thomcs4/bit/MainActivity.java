@@ -13,26 +13,25 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Button startB;
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startB = (Button) findViewById(R.id.startButton);
-        startB.setOnClickListener(this);
+        Button startB = findViewById(R.id.startButton);
+        startB.setOnClickListener(new ButtonClickHandler());
     }
 
-    @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.startButton)
-        {
-            Intent changeActivity = new Intent(MainActivity.this, QuestionActivity.class);
-//            changeActivity.putExtra();
-            startActivity(changeActivity);
-        }
+    public class ButtonClickHandler implements View.OnClickListener {
 
+        @Override
+        public void onClick(View view) {
+            if (view.getId() == R.id.startButton)
+            {
+                Intent changeActivity = new Intent(MainActivity.this, QuestionActivity.class);
+                startActivity(changeActivity);
+            }
+        }
     }
 }

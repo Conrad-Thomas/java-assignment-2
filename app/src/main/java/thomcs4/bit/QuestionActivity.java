@@ -25,6 +25,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Button option2;
     private Button option3;
     private Button option4;
+    private Boolean firstAttempt = true;
 
     private TextView questionInfo;
 
@@ -74,33 +75,35 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
         Button clicked = (Button) view;
-
-        //creates a pop up message with answer.
-
         if (clicked.getText().equals(answer)){
             clicked.setBackgroundColor(Color.GREEN);
             showDesc();
-            score++;
             qIndex++;
             clicked.setBackgroundResource(R.drawable.roundedbuttoncorrect);
+            if (firstAttempt)
+                score++;
         }
         else {
             clicked.setBackgroundResource(R.drawable.roundedbuttonincorrect);
+            firstAttempt = false;
         }
 
     }
 
 
     private void showDesc(){
+        //creates a pop up message with answer.
         answerDesc.setMessage(questions.getAnswerDesc(qIndex))
                 .setTitle("Answer: " + answer)
                 .setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        //resets buttons to normal format.
                         clearButtons();
-
+                        //loads next question.
                         loadQuestion();
+                        firstAttempt = true;
                     }
                 })
                 .create();
