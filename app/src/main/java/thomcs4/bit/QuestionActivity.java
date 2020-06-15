@@ -2,6 +2,7 @@ package thomcs4.bit;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -65,7 +66,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         } else {
             Intent changeActivity = new Intent(QuestionActivity.this, ResultsActivity.class);
             startActivity(changeActivity);
-
         }
 
     }
@@ -81,10 +81,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             clicked.setBackgroundColor(Color.GREEN);
             showDesc();
             score++;
-            clicked.setBackgroundColor(Color.parseColor("#35e8aa"));
+            qIndex++;
+            clicked.setBackgroundResource(R.drawable.roundedbuttoncorrect);
         }
         else {
-            clicked.setBackgroundColor(Color.parseColor("#fc496a"));
+            clicked.setBackgroundResource(R.drawable.roundedbuttonincorrect);
         }
 
     }
@@ -98,7 +99,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                         clearButtons();
-                        qIndex++;
+
                         loadQuestion();
                     }
                 })
@@ -107,10 +108,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void clearButtons() {
-        option1.setBackgroundColor(Color.parseColor("#F0F2F1"));
-        option2.setBackgroundColor(Color.parseColor("#F0F2F1"));
-        option3.setBackgroundColor(Color.parseColor("#F0F2F1"));
-        option4.setBackgroundColor(Color.parseColor("#F0F2F1"));
+        option1.setBackgroundResource(R.drawable.roundedbutton);
+        option2.setBackgroundResource(R.drawable.roundedbutton);
+        option3.setBackgroundResource(R.drawable.roundedbutton);
+        option4.setBackgroundResource(R.drawable.roundedbutton);
     }
 
 }
