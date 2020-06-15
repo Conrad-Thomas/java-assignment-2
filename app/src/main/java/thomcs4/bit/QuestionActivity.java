@@ -18,10 +18,12 @@ import org.w3c.dom.Text;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Questions questions = new Questions();
+    private String[] q;
+    private Questions questions;
     private int qIndex = 0;
     private int score = 0;
     private Boolean firstAttempt = true;
+    private Boolean[] qResults = new Boolean[10];
 
     private Button option1;
     private Button option2;
@@ -29,7 +31,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private Button option4;
     private TextView questionInfo;
     private ImageView picture;
-    private String answer;
     private AlertDialog.Builder answerDesc;
 
 
@@ -38,9 +39,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question2);
-
+//         q = getApplicationContext().getResources().getStringArray(R.array.questions);
+        questions = new Questions();
 //        Declaring objects on questions page.
-        questionInfo = (TextView) findViewById(R.id.questionTitle);
+        questionInfo = findViewById(R.id.questionTitle);
         picture = findViewById(R.id.questionPicture);
         option1 = findViewById(R.id.o1);
         option1.setOnClickListener(this);
@@ -61,11 +63,10 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             option2.setText(questions.getOption(qIndex, 2));
             option3.setText(questions.getOption(qIndex, 3));
             option4.setText(questions.getOption(qIndex, 4));
-            answer = questions.getAnswer(qIndex);
             picture.setImageResource(questions.getImage(qIndex));
         } else {
             Intent changeActivity = new Intent(QuestionActivity.this, ResultsActivity.class);
-            changeActivity.putExtra("results", score);
+            changeActivity.putExtra("results-array", qResults);
             startActivity(changeActivity);
         }
 
@@ -75,13 +76,15 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
 
         Button clicked = (Button) view;
-        if (clicked.getText().equals(answer)){
+        if (clicked.getText().equals(questions.getAnswer(qIndex))){
             clicked.setBackgroundColor(Color.GREEN);
             showDesc();
-            qIndex++;
             clicked.setBackgroundResource(R.drawable.roundedbuttoncorrect);
-            if (firstAttempt)
+            if (firstAttempt) {
                 score++;
+                qResults[qIndex] = true;
+            }
+            qIndex++;
         }
         else {
             clicked.setBackgroundResource(R.drawable.roundedbuttonincorrect);
@@ -94,7 +97,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private void showDesc(){
         //creates a pop up message with answer.
         answerDesc.setMessage(questions.getAnswerDesc(qIndex))
-                .setTitle("Answer: " + answer)
+                .setTitle("Answer: " + questions.getAnswer(qIndex))
                 .setPositiveButton("Next", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">city-slogans</string>
     <string name="question">Question:</string>
+    <string-array name="questions">
+        <item>1. Which is Christchurch\'s Nickname?</item>
+        <item>2. Which is Auckland\'s Nickname?</item>
+        <item>3. Which is Hamilton\'s Nickname?</item>
+        <item>4. Which is Invercargill\'s Nickname?</item>
+        <item>5. Which is Rotorua\'s Nickname?</item>
+        <item>6. Which is Te Anau\'s Nickname?</item>
+        <item>7. Which is Dunedin\'s Nickname?</item>
+    </string-array>
 </resources>

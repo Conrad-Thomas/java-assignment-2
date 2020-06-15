@@ -2,18 +2,48 @@ package thomcs4.bit;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
-public class ResultsActivity extends AppCompatActivity {
+public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int score;
+    private boolean[] qResults;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-        Bundle extras = getIntent().getExtras();
-        score = extras.getInt("results");
+        Intent intent = getIntent();
+        qResults = intent.getBooleanArrayExtra("results-array");
+        showResults();
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.homeButton)
+        {
+            Intent changeActivity = new Intent(ResultsActivity.this, MainActivity.class);
+            startActivity(changeActivity);
+        }
+    }
+
+    public void showResults() {
+        int counter = 0;
+        String data = "";
+        for (int r = 0 ; r < qResults.length; r++) {
+            if (qResults[r]) {
+                data = data + "Question " + r + "- Correct\n";
+                counter++;
+            } else {
+                data = data + "Question " + r + "- Incorrect\n";
+            }
+        }
+        TextView resultsOutput = findViewById(R.id.resultsLayout);
+        resultsOutput.setText(data);
+
+        TextView scoreOutput = findViewById(R.id.scoreOutput);
+        scoreOutput.setText(counter + " out of 10");
+    }
 }
