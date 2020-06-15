@@ -23,7 +23,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private int qIndex = 0;
     private int score = 0;
     private Boolean firstAttempt = true;
-    private Boolean[] qResults = new Boolean[10];
+    private boolean[] qResults = new boolean[10];
+//    private boolean[] qResults = {true, false, true, true ,true, false, false ,false ,false, true};
 
     private Button option1;
     private Button option2;
@@ -105,8 +106,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                         //resets buttons to normal format.
                         clearButtons();
                         //loads next question.
-                        loadQuestion();
                         firstAttempt = true;
+                        loadQuestion();
                     }
                 })
                 .create();

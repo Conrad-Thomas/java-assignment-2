@@ -34,10 +34,10 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         String data = "";
         for (int r = 0 ; r < qResults.length; r++) {
             if (qResults[r]) {
-                data = data + "Question " + r + "- Correct\n";
+                data = data + "Question " + r+1 + "- Correct\n";
                 counter++;
             } else {
-                data = data + "Question " + r + "- Incorrect\n";
+                data = data + "Question " + r+1 + "- Incorrect\n";
             }
         }
         TextView resultsOutput = findViewById(R.id.resultsLayout);
