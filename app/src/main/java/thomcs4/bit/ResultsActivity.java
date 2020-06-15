@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
@@ -15,6 +16,8 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+        Button homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(this);
         Intent intent = getIntent();
         qResults = intent.getBooleanArrayExtra("results-array");
         showResults();
@@ -33,11 +36,12 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         int counter = 0;
         String data = "";
         for (int r = 0 ; r < qResults.length; r++) {
+            int updated = r + 1;
             if (qResults[r]) {
-                data = data + "Question " + r+1 + "- Correct\n";
+                data = data + "Question " + updated + " - Correct\n";
                 counter++;
             } else {
-                data = data + "Question " + r+1 + "- Incorrect\n";
+                data = data + "Question " + updated + " - Incorrect\n";
             }
         }
         TextView resultsOutput = findViewById(R.id.resultsLayout);
