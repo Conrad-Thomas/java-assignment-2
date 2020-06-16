@@ -3,6 +3,10 @@ package thomcs4.bit;
 import android.content.Context;
 import android.content.ContextWrapper;
 
+/**
+ * Used to store the question data as well as
+ * gets and sets.
+ */
 public class Questions  {
 
     private String[] questions = {"1. Which is Christchurch's Nickname?",
@@ -62,53 +66,106 @@ public class Questions  {
 
 //-------------------------------------------------------------------------------------------------
 
+    /**
+     * @return length of questions array.
+     */
     public int getLength() {
         return questions.length;
     }
 
+    /**
+     *
+     * @param q index for which question.
+     * @return drawable image for index q
+     */
     public int getImage(int q) {
         return images[q];
     }
 
+    /**
+     * Sets the image array.
+     * @param images
+     */
     public void setImages(int[] images) {
         this.images = images;
     }
 
+    /**
+     *
+     * @param q index for which question
+     * @return the string inside the question array
+     * with index q
+     */
     public String getQuestion(int q) {
         return questions[q];
     }
 
+    /**
+     * Sets the questions array.
+     * @param questions
+     */
     public void setQuestions(String[] questions) {
         this.questions = questions;
     }
 
+    /**
+     *
+     * @param q index for which question
+     * @param num index for which option 1 - 4
+     * @return the string for that option.
+     */
     public String getOption(int q, int num) {
         return options[q][num-1];
     }
 
+    /**
+     * sets the options array.
+     * @param options
+     */
     public void setOptions(String[][] options) {
         this.options = options;
     }
 
+    /**
+     * @param q index for which question
+     * @return answer string.
+     */
     public String getAnswer(int q) {
         return answers[q];
     }
 
+    /**
+     * sets the answers array.
+     * @param answers
+     */
     public void setAnswers(String[] answers) {
         this.answers = answers;
     }
 
+    /**
+     *
+     * @param q index for which question
+     * @return the string desc for the matching question.
+     */
     public String getAnswerDesc(int q) {
         return answerDesc[q];
     }
 
+    /**
+     * sets the answersdesc array.
+     * @param answerDesc
+     */
     public void setAnswerDesc(String[] answerDesc) {
         this.answerDesc = answerDesc;
     }
 
+    /**
+     *
+     * @return A string saying how many questions there are.
+     */
     @Override
     public String toString() {
-        return "";
+        return "There are " + getLength() + " questions in this quiz.";
     }
 
 }

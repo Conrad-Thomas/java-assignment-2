@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+/**
+ * This class is used to run the question functionalities.
+ */
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private String[] q;
@@ -24,7 +27,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private int score = 0;
     private Boolean firstAttempt = true;
     private boolean[] qResults = new boolean[10];
-//    private boolean[] qResults = {true, false, true, true ,true, false, false ,false ,false, true};
 
     private Button option1;
     private Button option2;
@@ -35,14 +37,18 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     private AlertDialog.Builder answerDesc;
 
 
-
+    /**
+     * Defines buttons, textViews and AlertDialog.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question2);
-//         q = getApplicationContext().getResources().getStringArray(R.array.questions);
+
         questions = new Questions();
-//        Declaring objects on questions page.
+
         questionInfo = findViewById(R.id.questionTitle);
         picture = findViewById(R.id.questionPicture);
         option1 = findViewById(R.id.o1);
@@ -53,10 +59,16 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         option3.setOnClickListener(this);
         option4 = findViewById(R.id.o4);
         option4.setOnClickListener(this);
+
         answerDesc = new AlertDialog.Builder(this).setCancelable(false);
+
         loadQuestion();
     }
 
+    /**
+     * Loads the question depending on the qIndex.
+     * if all questions have been cycled through, open the Results Activity.
+     */
     private void loadQuestion() {
         if (qIndex < questions.getLength()) {
             questionInfo.setText(questions.getQuestion(qIndex));
@@ -73,6 +85,12 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
+    /**
+     * On click method waiting for one of the options buttons to be clicked
+     * when one is, show the pop up and increase the score if it's their first
+     * attempt. Otherwise set it to red because its incorrect.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
 
@@ -95,6 +113,11 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    /**
+     * The showDesc() method sends a pop up to the user
+     * with information about that answer when they quess the
+     * question correctly.
+     */
     private void showDesc(){
         //creates a pop up message with answer.
         answerDesc.setMessage(questions.getAnswerDesc(qIndex))
@@ -114,6 +137,9 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         answerDesc.show();
     }
 
+    /**
+     * Clears the buttons to their default format (white)
+     */
     private void clearButtons() {
         option1.setBackgroundResource(R.drawable.roundedbutton);
         option2.setBackgroundResource(R.drawable.roundedbutton);

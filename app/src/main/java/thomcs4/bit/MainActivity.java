@@ -13,8 +13,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * Runs the home screen on the app, shows logo and start quiz
+ * button.
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * Creates the activity and defines the startButton and assigns
+     * the listener.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         startB.setOnClickListener(new ButtonClickHandler());
     }
 
+    /**
+     * The button click handler listens for the startButton to be clicked,
+     * when it is, switch to a new activity (which is the QuestionActivity)
+     */
     public class ButtonClickHandler implements View.OnClickListener {
 
         @Override
